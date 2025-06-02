@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://us3vgii5aegg"]
+
+[ext_resource type="Texture2D" uid="uid://dg76twfvvth5c" path="res://assests/enemies/flyBadur/sonjoy_kola_badur_rp1.png" id="1_5fn3r"]
+[ext_resource type="Script" uid="uid://c8hjx33bqofsm" path="res://scripts/bat.gd" id="1_8qtcx"]
+[ext_resource type="Texture2D" uid="uid://b36axrrgnephv" path="res://assests/enemies/flyBadur/sonjoy_kola_badur_rp2.png" id="2_8qtcx"]
+[ext_resource type="Texture2D" uid="uid://lbto24mhoo4v" path="res://assests/enemies/flyBadur/sonjoy_kola_badur_rp3.png" id="3_x4bhu"]
+[ext_resource type="Texture2D" uid="uid://dqo5r56ob32da" path="res://assests/enemies/flyBadur/sonjoy_kola_badur_rp4.png" id="4_k0o7o"]
+[ext_resource type="Texture2D" uid="uid://dbp0okoinq3ut" path="res://assests/enemies/flyBadur/sonjoy_kola_badur_rp5.png" id="5_67y1s"]
+[ext_resource type="Texture2D" uid="uid://uvso3euk4uxl" path="res://assests/enemies/flyBadur/sonjoy_kola_badur_rp6.png" id="6_p5otw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjjhm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5fn3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8qtcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x4bhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k0o7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_67y1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p5otw")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8eff"]
+radius = 8.99946
+height = 46.0191
+
+[node name="bat" type="Area2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_8qtcx")
+
+[node name="bat_anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.44286, 1.44286)
+sprite_frames = SubResource("SpriteFrames_vjjhm")
+animation = &"fly"
+speed_scale = 2.5
+
+[node name="bat_collision" type="CollisionShape2D" parent="."]
+rotation = -1.55988
+shape = SubResource("CapsuleShape2D_n8eff")

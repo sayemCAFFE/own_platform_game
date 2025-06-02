@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://x7qjodoohwxw"]
+
+[ext_resource type="Texture2D" uid="uid://dqhj1khepvyr0" path="res://assests/backgrounds/sky_background.png" id="1"]
+[ext_resource type="Script" uid="uid://d23ld21of7cq" path="res://scripts/level_1.gd" id="1_fcfvj"]
+[ext_resource type="Texture2D" uid="uid://bu5y4o8kpx28n" path="res://assests/tilemap/platform1.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://b2d5kggy0cajq" path="res://scenes/player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ytmxeqr1tl0j" path="res://scenes/jumping_enemy.tscn" id="4_5xbjy"]
+[ext_resource type="Script" uid="uid://c5k66uhyf8mu1" path="res://scripts/death.gd" id="6_fcfvj"]
+[ext_resource type="PackedScene" uid="uid://us3vgii5aegg" path="res://scenes/bat.tscn" id="6_pa8r4"]
+[ext_resource type="PackedScene" uid="uid://bgx7tmw6pwf5" path="res://scenes/round_spike.tscn" id="8_15mv3"]
+[ext_resource type="PackedScene" uid="uid://bx6klsnvb6mf0" path="res://scenes/jungle_enemy.tscn" id="9_e3sih"]
+[ext_resource type="PackedScene" uid="uid://c1wwsg3j7mhhc" path="res://scenes/smile.tscn" id="10_2y5yt"]
+[ext_resource type="PackedScene" uid="uid://b51lpay1hevk8" path="res://scenes/spike_1.tscn" id="11_go7sj"]
+[ext_resource type="PackedScene" uid="uid://87rd07p4b8vm" path="res://scenes/spike_2.tscn" id="12_7gny6"]
+[ext_resource type="PackedScene" uid="uid://duhhsnxi01ewh" path="res://scenes/high_spike.tscn" id="13_7gny6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rus8k"]
+texture = ExtResource("2")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/animation_speed = 1.845
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:1/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bswci"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_rus8k")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rus8k"]
+size = Vector2(910, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcfvj"]
+size = Vector2(5432, 207)
+
+[node name="level_1" type="Node2D"]
+script = ExtResource("1_fcfvj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(512, 300)
+scale = Vector2(2.52839, 0.833333)
+texture = ExtResource("1")
+
+[node name="player" parent="." instance=ExtResource("3")]
+position = Vector2(36, 380)
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_bswci")
+rendering_quadrant_size = 32
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["tilemap"]]
+position = Vector2(37, 450)
+collision_layer = 8
+collision_mask = 55
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(403, 29)
+shape = SubResource("RectangleShape2D_rus8k")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(402, 28)
+scale = Vector2(4.625, 0.208333)
+texture = ExtResource("2")
+
+[node name="water_timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="water_marker" type="Marker2D" parent="."]
+position = Vector2(547, 10)
+
+[node name="water_marker2" type="Marker2D" parent="."]
+position = Vector2(561, 24)
+rotation = 2.06039
+
+[node name="water_node" type="Node2D" parent="."]
+
+[node name="death" type="Area2D" parent="."]
+position = Vector2(455, 748)
+collision_layer = 8
+collision_mask = 55
+script = ExtResource("6_fcfvj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
+position = Vector2(35, 93.5)
+shape = SubResource("RectangleShape2D_fcfvj")
+
+[node name="bat" parent="." instance=ExtResource("6_pa8r4")]
+position = Vector2(269, 349)
+
+[node name="round_spike" parent="." instance=ExtResource("8_15mv3")]
+position = Vector2(150, 438)
+
+[node name="jungle_enemy" parent="." instance=ExtResource("9_e3sih")]
+position = Vector2(312, 449)
+
+[node name="smile" parent="." instance=ExtResource("10_2y5yt")]
+position = Vector2(361, 447)
+
+[node name="spike1" parent="." instance=ExtResource("11_go7sj")]
+position = Vector2(403, 468)
+
+[node name="spike2" parent="." instance=ExtResource("12_7gny6")]
+position = Vector2(443, 468)
+
+[node name="high_spike" parent="." instance=ExtResource("13_7gny6")]
+position = Vector2(474, 431)
+
+[node name="jumping_enemy" parent="." instance=ExtResource("4_5xbjy")]
+position = Vector2(234, 423)
+
+[connection signal="timeout" from="water_timer" to="." method="_on_water_timer_timeout"]
+[connection signal="body_entered" from="death" to="death" method="_on_body_entered"]

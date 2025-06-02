@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlh72n38omh0i"]
+
+[ext_resource type="Script" uid="uid://mrrsngq6vndn" path="res://scripts/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://dqhj1khepvyr0" path="res://assests/backgrounds/sky_background.png" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://c0kyl80y6ldiu" path="res://font/Comfortaa/static/Comfortaa-Bold.ttf" id="2_ekxnf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0, 0.113725, 0.933333, 0.494118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0, 0.494118, 0, 0.384314)
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_bqqt6")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(578.75, 324)
+scale = Vector2(2.92963, 1)
+texture = ExtResource("1_l6cm7")
+
+[node name="game_button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 461.0
+offset_top = 402.0
+offset_right = 652.0
+offset_bottom = 494.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+text = "Play"
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 154.0
+offset_top = 167.0
+offset_right = 942.0
+offset_bottom = 304.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 90
+text = "Platform Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="game_button" to="." method="_on_game_button_pressed"]

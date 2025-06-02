@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b51lpay1hevk8"]
+
+[ext_resource type="Script" uid="uid://dtdvf5kvbbr8g" path="res://scripts/spike_1.gd" id="1_ggsbj"]
+[ext_resource type="Texture2D" uid="uid://br78eh6gfidei" path="res://assests/enemies/normalEnemies/Small_spike.png" id="1_kciil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kciil"]
+size = Vector2(32, 13)
+
+[node name="spike1" type="Area2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_ggsbj")
+
+[node name="spike1_anim" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+texture = ExtResource("1_kciil")
+
+[node name="spike1_coll" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_kciil")

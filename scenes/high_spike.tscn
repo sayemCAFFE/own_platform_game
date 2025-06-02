@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://duhhsnxi01ewh"]
+
+[ext_resource type="Texture2D" uid="uid://6e4yf2nyqpo0" path="res://assests/enemies/normalEnemies/hi_spike.png" id="1_nejfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uk2s"]
+size = Vector2(32, 22)
+
+[node name="high_spike" type="Area2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 9
+
+[node name="high_spike" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+texture = ExtResource("1_nejfe")
+
+[node name="high_spike_coll" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_6uk2s")

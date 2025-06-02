@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgx7tmw6pwf5"]
+
+[ext_resource type="Script" uid="uid://ibloptwvenjh" path="res://scripts/round_spike.gd" id="1_fkm30"]
+[ext_resource type="Texture2D" uid="uid://bappdhb3bmk0q" path="res://assests/enemies/spikeBall/spike1.png" id="1_m46my"]
+[ext_resource type="Texture2D" uid="uid://2ls8bjdhw0e0" path="res://assests/enemies/spikeBall/spike2.png" id="2_fkm30"]
+[ext_resource type="Texture2D" uid="uid://d2s5yrkd3f6f7" path="res://assests/enemies/spikeBall/spike3.png" id="3_kboer"]
+[ext_resource type="Texture2D" uid="uid://csyvehwenp80d" path="res://assests/enemies/spikeBall/spike4.png" id="4_fb2dm"]
+[ext_resource type="Texture2D" uid="uid://s248v626rmcs" path="res://assests/enemies/spikeBall/spike5.png" id="5_awx6k"]
+[ext_resource type="Texture2D" uid="uid://cul2ijxwkaot6" path="res://assests/enemies/spikeBall/spike6.png" id="6_w6us5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w7t6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m46my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fkm30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kboer")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fb2dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_awx6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w6us5")
+}],
+"loop": true,
+"name": &"round",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m46my"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkm30"]
+radius = 25.318
+
+[node name="round_spike" type="RigidBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_fkm30")
+
+[node name="round_spike_anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.630208, 0.630208)
+sprite_frames = SubResource("SpriteFrames_w7t6i")
+animation = &"round"
+frame_progress = 0.310721
+speed_scale = 3.5
+
+[node name="round_spike_coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m46my")
+
+[node name="round_spike_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="round_spike_area"]
+shape = SubResource("CircleShape2D_fkm30")

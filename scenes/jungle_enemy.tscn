@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx6klsnvb6mf0"]
+
+[ext_resource type="Texture2D" uid="uid://0mhmcyg1pqjf" path="res://assests/enemies/jungle_enemy/jungle_enemy1.png" id="1_ex57o"]
+[ext_resource type="Script" uid="uid://bm1vo2m8rcmg8" path="res://scripts/jungle_enemy.gd" id="1_vq662"]
+[ext_resource type="Texture2D" uid="uid://bwq8ov0jp3ej8" path="res://assests/enemies/jungle_enemy/jungle_enemy2.png" id="2_vq662"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_inen1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ex57o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vq662")
+}],
+"loop": true,
+"name": &"do",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ex57o"]
+radius = 14.0
+height = 36.0
+
+[node name="jungle_enemy" type="Area2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_vq662")
+
+[node name="jungle_enemy_anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_inen1")
+animation = &"do"
+
+[node name="jungle_enemy_coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ex57o")

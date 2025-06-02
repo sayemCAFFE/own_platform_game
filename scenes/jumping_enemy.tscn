@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://ytmxeqr1tl0j"]
+
+[ext_resource type="Script" uid="uid://kiltuni1wlie" path="res://scripts/jumping_enemy.gd" id="1_8btmh"]
+[ext_resource type="Texture2D" uid="uid://bbitwbgunbo81" path="res://assests/enemies/enemy_ball1/enemy_ball_rp1.png" id="2_8btmh"]
+[ext_resource type="Texture2D" uid="uid://d38p5gnhfgf41" path="res://assests/enemies/enemy_ball1/enemy_ball_rp2.png" id="3_lblm1"]
+[ext_resource type="Texture2D" uid="uid://cs2wuqsjse8no" path="res://assests/enemies/enemy_ball1/enemy_ball_rp3.png" id="4_71u5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lblm1"]
+size = Vector2(34, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71u5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8btmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lblm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_71u5t")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8btmh"]
+size = Vector2(36, 41)
+
+[node name="jumping_enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_8btmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_lblm1")
+
+[node name="jumping_enemy_node" type="Node2D" parent="."]
+
+[node name="jumping_enemy" type="AnimatedSprite2D" parent="jumping_enemy_node"]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_71u5t")
+animation = &"jump"
+
+[node name="area" type="Area2D" parent="jumping_enemy_node" groups=["extra"]]
+collision_layer = 32
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jumping_enemy_node/area"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_8btmh")
+
+[connection signal="body_entered" from="jumping_enemy_node/area" to="." method="_on_area_body_entered"]
