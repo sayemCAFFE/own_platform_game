@@ -87,10 +87,10 @@ wait_time = 0.5
 autostart = true
 
 [node name="water_marker" type="Marker2D" parent="."]
-position = Vector2(242, 13)
+position = Vector2(2238, -229)
 
 [node name="water_marker2" type="Marker2D" parent="."]
-position = Vector2(256, 27)
+position = Vector2(2252, -215)
 rotation = 2.06039
 
 [node name="water_node" type="Node2D" parent="."]
