@@ -6,27 +6,35 @@
 [ext_resource type="Texture2D" uid="uid://cs2wuqsjse8no" path="res://assests/enemies/enemy_ball1/enemy_ball_rp3.png" id="4_71u5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lblm1"]
-size = Vector2(34, 41)
+size = Vector2(29, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_71u5t"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_8btmh")
-}, {
-"duration": 1.0,
 "texture": ExtResource("3_lblm1")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_71u5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lblm1")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8btmh")
+}],
+"loop": false,
+"name": &"normal",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8btmh"]
-size = Vector2(36, 41)
+size = Vector2(34, 34)
 
 [node name="jumping_enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -34,7 +42,7 @@ collision_mask = 9
 script = ExtResource("1_8btmh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.5)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_lblm1")
 
 [node name="jumping_enemy_node" type="Node2D" parent="."]
@@ -45,12 +53,12 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_71u5t")
 animation = &"jump"
 
-[node name="area" type="Area2D" parent="jumping_enemy_node" groups=["extra"]]
-collision_layer = 32
+[node name="collision_area" type="Area2D" parent="."]
+collision_layer = 2
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="jumping_enemy_node/area"]
-position = Vector2(0, 3.5)
+[node name="collision" type="CollisionShape2D" parent="collision_area"]
 shape = SubResource("RectangleShape2D_8btmh")
 
-[connection signal="body_entered" from="jumping_enemy_node/area" to="." method="_on_area_body_entered"]
+[connection signal="animation_finished" from="jumping_enemy_node/jumping_enemy" to="." method="_on_jumping_enemy_animation_finished"]
+[connection signal="body_entered" from="collision_area" to="." method="_on_collision_area_body_entered"]

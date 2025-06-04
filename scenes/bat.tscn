@@ -53,3 +53,5 @@ speed_scale = 2.5
 [node name="bat_collision" type="CollisionShape2D" parent="."]
 rotation = -1.55988
 shape = SubResource("CapsuleShape2D_n8eff")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

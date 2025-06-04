@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtdv4bchehi1k"]
+
+[ext_resource type="Texture2D" uid="uid://dpc2ibk7o0k6a" path="res://assests/enemies/plant_enemy/plant_bullet.png" id="1_5aa1h"]
+[ext_resource type="Script" uid="uid://s3swm3ysv6r5" path="res://scripts/plant_bullet.gd" id="1_tm4be"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5aa1h"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tm4be"]
+radius = 7.0
+
+[node name="plant_bullet" type="CharacterBody2D" groups=["enemy_bullet"]]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_tm4be")
+
+[node name="plant_bullet" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5aa1h")
+
+[node name="plant_bullet_coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5aa1h")
+
+[node name="plant_bullet2" type="Area2D" parent="." groups=["enemy_bullet"]]
+collision_layer = 64
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plant_bullet2"]
+shape = SubResource("CircleShape2D_tm4be")
+
+[connection signal="body_entered" from="plant_bullet2" to="." method="_on_plant_bullet_2_body_entered"]

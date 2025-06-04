@@ -19,3 +19,5 @@ texture = ExtResource("1_kciil")
 [node name="spike1_coll" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_kciil")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

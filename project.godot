@@ -15,6 +15,11 @@ run/main_scene="uid://dlh72n38omh0i"
 config/features=PackedStringArray("4.4")
 config/icon="res://assests/player/player_idle/animation_try_idle1.png"
 
+[autoload]
+
+GlobalSignals="*res://scripts/auto_load/global_signals.gd"
+GlobalVars="*res://scripts/auto_load/global_vars.gd"
+
 [display]
 
 window/size/resizable=false
@@ -26,6 +31,7 @@ enemy=""
 tilemap=""
 power_up=""
 extra=""
+enemy_bullet=""
 
 [gui]
 
@@ -57,6 +63,7 @@ left={
 2d_physics/layer_4="tilemap"
 2d_physics/layer_5="bed_power"
 2d_physics/layer_6="extra"
+2d_physics/layer_7="enemy_bullet"
 
 [physics]
 

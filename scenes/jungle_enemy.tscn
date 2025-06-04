@@ -34,3 +34,5 @@ animation = &"do"
 
 [node name="jungle_enemy_coll" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ex57o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

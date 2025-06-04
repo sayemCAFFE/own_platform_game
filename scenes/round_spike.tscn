@@ -56,6 +56,10 @@ speed_scale = 3.5
 shape = SubResource("CircleShape2D_m46my")
 
 [node name="round_spike_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="round_spike_area"]
 shape = SubResource("CircleShape2D_fkm30")
+
+[connection signal="body_entered" from="round_spike_area" to="." method="_on_round_spike_area_body_entered"]
